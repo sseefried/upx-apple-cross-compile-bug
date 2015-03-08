@@ -1,0 +1,255 @@
+Below is the diff between `otool -l` run on the uncompressed
+and the compressed executable.
+
+----------------
+test:						test:
+Load command 0					Load command 0
+      cmd LC_SEGMENT				      cmd LC_SEGMENT
+  cmdsize 56					  cmdsize 56
+  segname __PAGEZERO				  segname __PAGEZERO
+   vmaddr 0x00000000				   vmaddr 0x00000000
+   vmsize 0x00004000			      |	   vmsize 0x00001000
+  fileoff 0					  fileoff 0
+ filesize 0					 filesize 0
+  maxprot 0x00000000				  maxprot 0x00000000
+ initprot 0x00000000				 initprot 0x00000000
+   nsects 0					   nsects 0
+    flags 0x0					    flags 0x0
+Load command 1					Load command 1
+      cmd LC_SEGMENT				      cmd LC_SEGMENT
+  cmdsize 328				      |	  cmdsize 124
+  segname __TEXT			      |	  segname __XHDR
+   vmaddr 0x00004000			      |	   vmaddr 0x00001000
+   vmsize 0x00008000			      |	   vmsize 0x00001000
+  fileoff 0					  fileoff 0
+ filesize 32768				      |	 filesize 4096
+  maxprot 0x00000005			      |	  maxprot 0x00000007
+ initprot 0x00000005			      |	 initprot 0x00000007
+   nsects 4				      |	   nsects 1
+    flags 0x0					    flags 0x0
+Section						Section
+  sectname __text			      |	  sectname __xhdr
+   segname __TEXT			      |	   segname __XHDR
+      addr 0x0000bf50			      |	      addr 0x000011d8
+      size 0x0000005c			      |	      size 0x00000000
+    offset 32592			      |	    offset 472
+     align 2^2 (4)				     align 2^2 (4)
+    reloff 0					    reloff 0
+    nreloc 0					    nreloc 0
+     flags 0x80000400			      |	     flags 0x00000000
+ reserved1 0				      <
+ reserved2 0				      <
+Section					      <
+  sectname __stub_helper		      <
+   segname __TEXT			      <
+      addr 0x0000bfac			      <
+      size 0x0000003c			      <
+    offset 32684			      <
+     align 2^2 (4)			      <
+    reloff 0				      <
+    nreloc 0				      <
+     flags 0x80000400			      <
+ reserved1 0				      <
+ reserved2 0				      <
+Section					      <
+  sectname __cstring			      <
+   segname __TEXT			      <
+      addr 0x0000bfe8			      <
+      size 0x0000000f			      <
+    offset 32744			      <
+     align 2^0 (1)			      <
+    reloff 0				      <
+    nreloc 0				      <
+     flags 0x00000002			      <
+ reserved1 0					 reserved1 0
+ reserved2 0					 reserved2 0
+Section					      <
+  sectname __symbolstub1		      <
+   segname __TEXT			      <
+      addr 0x0000bff8			      <
+      size 0x00000008			      <
+    offset 32760			      <
+     align 2^2 (4)			      <
+    reloff 0				      <
+    nreloc 0				      <
+     flags 0x80000408			      <
+ reserved1 0 (index into indirect symbol tabl <
+ reserved2 4 (size of stubs)		      <
+Load command 2					Load command 2
+      cmd LC_SEGMENT				      cmd LC_SEGMENT
+  cmdsize 396				      |	  cmdsize 124
+  segname __DATA			      |	  segname __TEXT
+   vmaddr 0x0000c000			      |	   vmaddr 0x0001c000
+   vmsize 0x0000c000			      |	   vmsize 0x00001078
+  fileoff 32768				      |	  fileoff 0
+ filesize 49152				      |	 filesize 3522
+  maxprot 0x00000003			      |	  maxprot 0x00000007
+ initprot 0x00000003			      |	 initprot 0x00000007
+   nsects 5				      |	   nsects 1
+    flags 0x0					    flags 0x0
+Section						Section
+  sectname __lazy_symbol		      |	  sectname __text
+   segname __DATA			      |	   segname __TEXT
+      addr 0x0000c000			      |	      addr 0x0001c200
+      size 0x00000008			      |	      size 0x00000e78
+    offset 32768			      |	    offset 512
+     align 2^2 (4)			      <
+    reloff 0				      <
+    nreloc 0				      <
+     flags 0x00000007			      <
+ reserved1 2 (index into indirect symbol tabl <
+ reserved2 0				      <
+Section					      <
+  sectname __program_vars		      <
+   segname __DATA			      <
+      addr 0x0000c008			      <
+      size 0x00000014			      <
+    offset 32776			      <
+     align 2^2 (4)			      <
+    reloff 0				      <
+    nreloc 0				      <
+     flags 0x00000000			      <
+ reserved1 0				      <
+ reserved2 0				      <
+Section					      <
+  sectname __nl_symbol_ptr		      <
+   segname __DATA			      <
+      addr 0x0000c01c			      <
+      size 0x00000008			      <
+    offset 32796			      <
+     align 2^2 (4)			      <
+    reloff 0				      <
+    nreloc 0				      <
+     flags 0x00000006			      <
+ reserved1 4 (index into indirect symbol tabl <
+ reserved2 0				      <
+Section					      <
+  sectname __data			      <
+   segname __DATA			      <
+      addr 0x0000c024			      <
+      size 0x00009c40			      <
+    offset 32804			      <
+     align 2^2 (4)				     align 2^2 (4)
+    reloff 0					    reloff 0
+    nreloc 0					    nreloc 0
+     flags 0x00000000				     flags 0x00000000
+ reserved1 0					 reserved1 0
+ reserved2 0					 reserved2 0
+Section					      <
+  sectname __common			      <
+   segname __DATA			      <
+      addr 0x00015c64			      <
+      size 0x00000010			      <
+    offset 0				      <
+     align 2^2 (4)			      <
+    reloff 0				      <
+    nreloc 0				      <
+     flags 0x00000001			      <
+ reserved1 0				      <
+ reserved2 0				      <
+Load command 3					Load command 3
+      cmd LC_SEGMENT				      cmd LC_SEGMENT
+  cmdsize 56					  cmdsize 56
+  segname __LINKEDIT				  segname __LINKEDIT
+   vmaddr 0x00018000			      |	   vmaddr 0x0001e000
+   vmsize 0x00004000			      |	   vmsize 0x00000000
+  fileoff 81920				      |	  fileoff 8192
+ filesize 500				      |	 filesize 0
+  maxprot 0x00000001			      |	  maxprot 0x00000007
+ initprot 0x00000001				 initprot 0x00000001
+   nsects 0					   nsects 0
+    flags 0x0					    flags 0x0
+Load command 4					Load command 4
+            cmd LC_DYLD_INFO_ONLY	      <
+        cmdsize 48			      <
+     rebase_off 81920			      <
+    rebase_size 4			      <
+       bind_off 81924			      <
+      bind_size 24			      <
+  weak_bind_off 0			      <
+ weak_bind_size 0			      <
+  lazy_bind_off 81948			      <
+ lazy_bind_size 28			      <
+     export_off 81976			      <
+    export_size 128			      <
+Load command 5				      <
+     cmd LC_SYMTAB			      <
+ cmdsize 24				      <
+  symoff 82112				      <
+   nsyms 13				      <
+  stroff 82292				      <
+ strsize 128				      <
+Load command 6				      <
+            cmd LC_DYSYMTAB		      <
+        cmdsize 80			      <
+      ilocalsym 0			      <
+      nlocalsym 2			      <
+     iextdefsym 2			      <
+     nextdefsym 8			      <
+      iundefsym 10			      <
+      nundefsym 3			      <
+         tocoff 0			      <
+           ntoc 0			      <
+      modtaboff 0			      <
+        nmodtab 0			      <
+   extrefsymoff 0			      <
+    nextrefsyms 0			      <
+ indirectsymoff 82268			      <
+  nindirectsyms 6			      <
+      extreloff 0			      <
+        nextrel 0			      <
+      locreloff 0			      <
+        nlocrel 0			      <
+Load command 7				      <
+          cmd LC_LOAD_DYLINKER		      <
+      cmdsize 28			      <
+         name /usr/lib/dyld (offset 12)	      <
+Load command 8				      <
+     cmd LC_UUID			      <
+ cmdsize 24				      <
+    uuid 4373B6F1-E991-3E8A-9598-87AF892601A5 <
+Load command 9				      <
+      cmd LC_VERSION_MIN_IPHONEOS	      <
+  cmdsize 16				      <
+  version 4.3				      <
+      sdk 8.1				      <
+Load command 10				      <
+        cmd LC_UNIXTHREAD			        cmd LC_UNIXTHREAD
+    cmdsize 84					    cmdsize 84
+     flavor ARM_THREAD_STATE			     flavor ARM_THREAD_STATE
+      count ARM_THREAD_STATE_COUNT		      count ARM_THREAD_STATE_COUNT
+	    r0  0x00000000 r1     0x00000000 		    r0  0x00000000 r1     0x00000000 
+	    r4  0x00000000 r5     0x00000000 		    r4  0x00000000 r5     0x00000000 
+	    r8  0x00000000 r9     0x00000000 		    r8  0x00000000 r9     0x00000000 
+	    r12 0x00000000 sp     0x00000000  |		    r12 0x00000000 sp     0x00000000 
+	   cpsr 0x00000000				   cpsr 0x00000000
+Load command 11				      <
+          cmd LC_ENCRYPTION_INFO	      <
+      cmdsize 20			      <
+    cryptoff  16384			      <
+    cryptsize 16384			      <
+    cryptid   0				      <
+Load command 12				      <
+          cmd LC_LOAD_DYLIB		      <
+      cmdsize 52			      <
+         name /usr/lib/libSystem.B.dylib (off <
+   time stamp 2 Thu Jan  1 10:00:02 1970      <
+      current version 1213.0.0		      <
+compatibility version 1.0.0		      <
+Load command 13				      <
+          cmd LC_LOAD_DYLIB		      <
+      cmdsize 52			      <
+         name /usr/lib/libgcc_s.1.dylib (offs <
+   time stamp 2 Thu Jan  1 10:00:02 1970      <
+      current version 8.0.0		      <
+compatibility version 1.0.0		      <
+Load command 14				      <
+      cmd LC_FUNCTION_STARTS		      <
+  cmdsize 16				      <
+  dataoff 82104				      <
+ datasize 8				      <
+Load command 15				      <
+      cmd LC_DATA_IN_CODE		      <
+  cmdsize 16				      <
+  dataoff 82112				      <
+ datasize 0				      <
