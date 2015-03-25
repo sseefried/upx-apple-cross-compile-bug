@@ -9,9 +9,6 @@ $CC test.c -o test
 
 otool -l test > otool-uncompressed-output.txt
 
-upx test
-
-codesign --force --sign 4874A84CCB54F378F6F2B099D7AFA3384881F3FD test
-
-otool -l test > otool-compressed-output.txt
+upx test && codesign --force --sign 4874A84CCB54F378F6F2B099D7AFA3384881F3FD test && \
+  otool -l test > otool-compressed-output.txt
 
